@@ -69,23 +69,19 @@
                                 <img class="ui medium rounded image" style="width: 50px; height: 50px" src="~/Images/Category/{{list.category_img}}">
                             </td>
                             <td>
-                                <div ng-show="list.category_active == true" class="dt-checkbox">
-                                    <input ng-click="active(list.category_id)" type="checkbox" checked name="select" value="1" id="example-select-all">
-                                    <span class="dt-checkbox-label"></span>
+                                <div ng-show="list.category_active == true">
+                                    <button ng-click="active(list.category_id)" class="ui inverted primary button">Hoạt Động</button>
                                 </div>
-                                <div ng-show="list.category_active == false" class="dt-checkbox">
-                                    <input ng-click="active(list.category_id)" type="checkbox" name="select" value="1" id="example-select-all">
-                                    <span class="dt-checkbox-label"></span>
+                                <div ng-show="list.category_active == false">
+                                    <button ng-click="active(list.category_id)" class="ui inverted red button">Không Hoạt Động</button>
                                 </div>
                             </td>
                             <td>
-                                <div ng-show="list.category_option == true" class="dt-checkbox">
-                                    <input ng-click="option(list.category_id)" type="checkbox" checked name="select" value="1" id="example-select-all">
-                                    <span class="dt-checkbox-label"></span>
+                                <div ng-show="list.category_option == true">
+                                    <button ng-click="option(list.category_id)" class="ui inverted green button">Hiển Thị</button>
                                 </div>
-                                <div ng-show="list.category_option == false" class="dt-checkbox">
-                                    <input ng-click="option(list.category_id)" type="checkbox" name="select" value="1" id="example-select-all">
-                                    <span class="dt-checkbox-label"></span>
+                                <div ng-show="list.category_option == false">
+                                    <button ng-click="option(list.category_id)" class="ui inverted red button">Không Hiển Thị</button>
                                 </div>
                             </td>
                             <td>{{list.category_datecreate}}</td>
@@ -210,14 +206,14 @@
             $scope.list = response.data;
 
             $scope.active = function (id) {
-                $http.get("/Admin/CategoriesAdmin/Active/" + id)
+                $http.get("/CategoriesAdmin/Active?id=" + id)
                     .then(function (response) {
                         $scope.list = response.data;
                     });
             };
 
             $scope.option = function (id) {
-                $http.get("/Admin/CategoriesAdmin/Option/" + id)
+                $http.get("/Admin/CategoriesAdmin/Option?id=" + id)
                     .then(function (response) {
                         $scope.list = response.data;
                     });
