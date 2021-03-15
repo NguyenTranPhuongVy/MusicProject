@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Delete";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 <style>
@@ -40,7 +40,7 @@
                         </select>
                     </div>
                     <div class="field">
-                        <button ng-click="linkDel()" class="ui secondary button">
+                        <button class="ui secondary button">
                             <i class="icon-copy dw dw-trash1"></i> Thùng Rác
                         </button>
                         <button data-toggle="modal" data-target="#create-Admin" class="ui button">
@@ -223,7 +223,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
-                        <form action="@Url.Action("Add", "CategoriesAdmin")"  method="post" enctype="multipart/form-data" class="ui form">
+                        <form action="@Url.Action("Add", "CategoriesAdmin")" method="post" enctype="multipart/form-data" class="ui form">
                             <p>Nhập đủ các thông tin sau: </p>
                             <div class="two fields">
                                 <div class="field">
@@ -282,15 +282,10 @@
                     });
             };
 
-            $scope.linkDel = function() {
-                window.location.href = '/Admin/CategoriesAdmin/Delete';
-            };
-
 
         }, function myError(response) {
             $scope.list = response.statusText;
         });
     });
 </script>
-
 

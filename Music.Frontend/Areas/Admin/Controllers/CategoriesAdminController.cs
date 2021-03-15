@@ -7,6 +7,8 @@ using Music.Model.DAO;
 using Music.Model.EF;
 using Music.Frontend.Function;
 using Music.Frontend.Models;
+using Music.Common;
+
 
 namespace Music.Frontend.Areas.Admin.Controllers
 {
@@ -30,7 +32,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new CategoriesDAO();
             if(dao.Active(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -40,8 +42,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToShortDateString().ToString(),
-                    category_dateupdate = n.category_dateupdate.Value.ToShortDateString().ToString(),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
                     category_img = n.category_img,
                     category_option = n.category_option
 
@@ -59,7 +61,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new CategoriesDAO();
             if (dao.Option(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -69,8 +71,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToShortDateString().ToString(),
-                    category_dateupdate = n.category_dateupdate.Value.ToShortDateString().ToString(),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
                     category_img = n.category_img,
                     category_option = n.category_option
 
@@ -83,18 +85,148 @@ namespace Music.Frontend.Areas.Admin.Controllers
             }
         }
 
+        //Hàm thêm
         [HttpPost]
-        public ActionResult Add(Category category)
+        public ActionResult Add(Category category, HttpPostedFileBase IMG, string del)
         {
-            var dao = new CategoriesDAO();
-            if(dao.ADD(category))
+            //Cập nhật có thay đổi
+            category.category_option = true;
+            category.category_bin = false;
+
+            //Kiem tra thay đổi value
+
+            if (category.category_active != true && category.category_active != false)
             {
-                return Redirect("/Admin/CategoriesAdmin/Index");
-            } 
+                category.category_active = false;
+            }
+
+            //Hinh ảnh
+            if (IMG != null)
+            {
+                var code = Guid.NewGuid().ToString();
+                var img = new ImagesController();
+                img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
+                category.category_img = code + IMG.FileName;
+            }
             else
             {
-                return Redirect("/");
-            }    
+
+                category.category_img = "notImg.png";
+            }
+
+            var dao = new CategoriesDAO();
+            var j = new JsonAdminController();
+
+            if (dao.ADD(category))
+            {
+                return Redirect("/Admin/CategoriesAdmin");
+            }
+            else
+            {
+                return Redirect("/Admin/CategoriesAdmin");
+            }
+        }
+
+        //Hàm sửa
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category category, HttpPostedFileBase IMG)
+        {
+            Category cate = db.Categories.Find(category.category_id);
+
+            category.category_active = cate.category_active;
+            category.category_datecreate = cate.category_datecreate;
+            category.category_dateupdate = DateTime.Now;
+            category.category_bin = cate.category_bin;
+            category.category_option = cate.category_option;
+            category.category_view = cate.category_view;
+            category.user_id = cate.user_id;
+
+            var i = new ImagesController();
+            if (IMG != null)
+            {
+                var code = Guid.NewGuid().ToString();
+                var img = new ImagesController();
+                img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
+                category.category_img = code + IMG.FileName;
+            }
+            else
+            {
+                category.category_img = cate.category_img;
+            }
+
+
+            var dao = new CategoriesDAO();
+            if (dao.Edit(category))
+            {
+                return Redirect("/Admin/CategoriesAdmin");
+            }
+            else
+            {
+                return Redirect("/Admin/CategoriesAdmin1");
+            }
+        }
+
+        //Thùng rác
+        [HttpGet]
+        public JsonResult Del(int? id)
+        {
+            var dao = new CategoriesDAO();
+            if (dao.Del(id))
+            {
+                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
+                List<jCategories> list = categories.Select(n => new jCategories
+                {
+                    category_active = n.category_active,
+                    category_bin = n.category_bin,
+                    category_id = n.category_id,
+                    category_name = n.category_name,
+                    category_note = n.category_note,
+                    category_view = n.category_view,
+                    user_id = n.user_id,
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_img = n.category_img,
+                    category_option = n.category_option
+
+                }).ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(null);
+            }
+        }
+
+        //Khôi Phục
+        [HttpGet]
+        public JsonResult Restore(int? id)
+        {
+            var dao = new CategoriesDAO();
+            if (dao.Del(id))
+            {
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
+                List<jCategories> list = categories.Select(n => new jCategories
+                {
+                    category_active = n.category_active,
+                    category_bin = n.category_bin,
+                    category_id = n.category_id,
+                    category_name = n.category_name,
+                    category_note = n.category_note,
+                    category_view = n.category_view,
+                    user_id = n.user_id,
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_img = n.category_img,
+                    category_option = n.category_option
+
+                }).ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(null);
+            }
         }
     }
 }

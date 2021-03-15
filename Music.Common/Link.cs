@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Music.Common
 {
-    class Link
+    public class Link
     {
+        //Link hình ảnh
+        public static string IMG_CATEGORY = "Category";
     }
 }

@@ -142,6 +142,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JsonController.cs" />
     <Compile Include="Controllers\ViewController.cs" />
+    <Compile Include="Function\FunctionController.cs" />
     <Compile Include="Function\ImagesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -881,6 +882,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Category\notImg.png" />
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-route.js" />
     <Content Include="Scripts\angular-route.min.js" />
@@ -1026,6 +1028,7 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Areas\Admin\Views\ViewAdmin\Validation.cshtml" />
+    <Content Include="Areas\Admin\Views\CategoriesAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1065,9 +1068,9 @@
     <Folder Include="Areas\Admin\Views\SingersAdmin\" />
     <Folder Include="Areas\Admin\Views\UsersAdmin\" />
     <Folder Include="Images\Album\" />
-    <Folder Include="Images\Category\" />
     <Folder Include="Images\Music\" />
     <Folder Include="Images\User\" />
+    <Folder Include="Views\Function\" />
     <Folder Include="Views\Images\" />
     <Folder Include="Views\Json\" />
     <Folder Include="Views\View\" />

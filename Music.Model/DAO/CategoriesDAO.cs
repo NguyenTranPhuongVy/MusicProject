@@ -16,11 +16,12 @@ namespace Music.Model.DAO
         {
             try
             {
-                db.Categories.Add(category);
-                category.category_bin = false;
                 category.category_datecreate = DateTime.Now;
                 category.category_dateupdate = DateTime.Now;
-                category.category_view = 0;
+
+                category.category_view = 1;
+
+                db.Categories.Add(category);
                 db.SaveChanges();
 
                 return true;
@@ -92,17 +93,36 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Del
+
+        //Thùng rác
         public bool Del(int? id)
         {
             try
             {
                 Category category = db.Categories.Find(id);
                 category.category_bin = true;
+                db.SaveChanges();
 
                 return true;
             }
             catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Khôi Phục
+        public bool Restore(int ? id)
+        {
+            try
+            {
+                Category category = db.Categories.Find(id);
+                category.category_bin = false;
+                db.SaveChanges();
+
+                return true;
+            }
+            catch(Exception)
             {
                 return false;
             }
