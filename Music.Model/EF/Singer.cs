@@ -21,6 +21,9 @@ namespace Music.Model.EF
         public string singer_note { get; set; }
         public string singer_img { get; set; }
         public Nullable<int> user_id { get; set; }
+        public Nullable<bool> singer_option { get; set; }
+        public Nullable<System.DateTime> singer_datecreate { get; set; }
+        public Nullable<System.DateTime> singer_dateupdate { get; set; }
     
         public virtual User User { get; set; }
     }

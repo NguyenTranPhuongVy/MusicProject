@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MusicProjectDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MusicProjectDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Albums">
           <Key>
             <PropertyRef Name="album_id" />
@@ -31,6 +31,10 @@
           <Property Name="author_bin" Type="bit" />
           <Property Name="author_note" Type="nvarchar(max)" />
           <Property Name="user_id" Type="int" />
+          <Property Name="author_option" Type="bit" />
+          <Property Name="author_datecreate" Type="datetime" />
+          <Property Name="author_dateupdate" Type="datetime" />
+          <Property Name="author_img" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Categories">
           <Key>
@@ -132,6 +136,9 @@
           <Property Name="singer_note" Type="nvarchar(max)" />
           <Property Name="singer_img" Type="nvarchar(max)" />
           <Property Name="user_id" Type="int" />
+          <Property Name="singer_option" Type="bit" />
+          <Property Name="singer_datecreate" Type="datetime" />
+          <Property Name="singer_dateupdate" Type="datetime" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -319,7 +326,8 @@
             <End Role="Singers" EntitySet="Singers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MusicProjectDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -350,6 +358,10 @@
           <Property Name="author_bin" Type="Boolean" />
           <Property Name="author_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="user_id" Type="Int32" />
+          <Property Name="author_option" Type="Boolean" />
+          <Property Name="author_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="author_dateupdate" Type="DateTime" Precision="3" />
+          <Property Name="author_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="Self.FK_Authors_Users" FromRole="Authors" ToRole="Users" />
         </EntityType>
         <EntityType Name="Category">
@@ -363,11 +375,47 @@
           <Property Name="category_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="category_view" Type="Int32" />
           <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Categories_Users" FromRole="Categories" ToRole="Users" />
           <Property Name="category_datecreate" Type="DateTime" Precision="3" />
           <Property Name="category_dateupdate" Type="DateTime" Precision="3" />
           <Property Name="category_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="category_option" Type="Boolean" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Categories_Users" FromRole="Categories" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="MusicsList">
+          <Key>
+            <PropertyRef Name="music_id" />
+          </Key>
+          <Property Name="music_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="music_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="music_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="music_lyric" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="music_time" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="music_view" Type="Int32" />
+          <Property Name="music_dowload" Type="Int32" />
+          <Property Name="music_love" Type="Int32" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="music_linkdow" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="music_datecreate" Type="DateTime" Precision="0" />
+          <Property Name="music_dateedit" Type="DateTime" Precision="0" />
+          <Property Name="music_active" Type="Boolean" />
+          <Property Name="music_bin" Type="Boolean" />
+          <Property Name="music_option" Type="Boolean" />
+          <Property Name="nation_id" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Musics_Users" FromRole="MusicsList" ToRole="Users" />
+          <NavigationProperty Name="National" Relationship="Self.FK_MusicsList_National" FromRole="MusicsList" ToRole="National" />
+        </EntityType>
+        <EntityType Name="National">
+          <Key>
+            <PropertyRef Name="nation_id" />
+          </Key>
+          <Property Name="nation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nation_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="nation_active" Type="Boolean" />
+          <Property Name="nation_bin" Type="Boolean" />
+          <Property Name="nation_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="nation_dateupdate" Type="DateTime" Precision="3" />
+          <Property Name="nation_option" Type="Boolean" />
+          <NavigationProperty Name="MusicsLists" Relationship="Self.FK_MusicsList_National" FromRole="National" ToRole="MusicsList" />
         </EntityType>
         <EntityType Name="Package">
           <Key>
@@ -424,6 +472,9 @@
           <Property Name="singer_note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="singer_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="user_id" Type="Int32" />
+          <Property Name="singer_option" Type="Boolean" />
+          <Property Name="singer_datecreate" Type="DateTime" Precision="3" />
+          <Property Name="singer_dateupdate" Type="DateTime" Precision="3" />
           <NavigationProperty Name="User" Relationship="Self.FK_Singers_Users" FromRole="Singers" ToRole="Users" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -457,10 +508,10 @@
           <NavigationProperty Name="Albums" Relationship="Self.FK_Albums_Users" FromRole="Users" ToRole="Albums" />
           <NavigationProperty Name="Authors" Relationship="Self.FK_Authors_Users" FromRole="Users" ToRole="Authors" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Categories_Users" FromRole="Users" ToRole="Categories" />
+          <NavigationProperty Name="MusicsLists" Relationship="Self.FK_Musics_Users" FromRole="Users" ToRole="MusicsList" />
           <NavigationProperty Name="Pays" Relationship="Self.FK_Pays_Users" FromRole="Users" ToRole="Pays" />
           <NavigationProperty Name="Profiles" Relationship="Self.FK_Profiles_Users" FromRole="Users" ToRole="Profiles" />
           <NavigationProperty Name="Singers" Relationship="Self.FK_Singers_Users" FromRole="Users" ToRole="Singers" />
-          <NavigationProperty Name="MusicsLists" Relationship="MusicProjectDataModel.FK_Musics_Users1" FromRole="User" ToRole="MusicsList" />
         </EntityType>
         <Association Name="FK_Albums_Users">
           <End Role="Users" Type="Self.User" Multiplicity="0..1" />
@@ -495,6 +546,30 @@
             </Principal>
             <Dependent Role="Categories">
               <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Musics_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="MusicsList">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MusicsList_National">
+          <End Role="National" Type="Self.National" Multiplicity="0..1" />
+          <End Role="MusicsList" Type="Self.MusicsList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="National">
+              <PropertyRef Name="nation_id" />
+            </Principal>
+            <Dependent Role="MusicsList">
+              <PropertyRef Name="nation_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -550,6 +625,8 @@
           <EntitySet Name="Albums" EntityType="Self.Album" />
           <EntitySet Name="Authors" EntityType="Self.Author" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="MusicsLists" EntityType="Self.MusicsList" />
+          <EntitySet Name="Nationals" EntityType="Self.National" />
           <EntitySet Name="Packages" EntityType="Self.Package" />
           <EntitySet Name="Pays" EntityType="Self.Pay" />
           <EntitySet Name="Profiles" EntityType="Self.Profile" />
@@ -568,6 +645,14 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Musics_Users" Association="Self.FK_Musics_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MusicsList" EntitySet="MusicsLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MusicsList_National" Association="Self.FK_MusicsList_National">
+            <End Role="National" EntitySet="Nationals" />
+            <End Role="MusicsList" EntitySet="MusicsLists" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pays_Packages" Association="Self.FK_Pays_Packages">
             <End Role="Packages" EntitySet="Packages" />
             <End Role="Pays" EntitySet="Pays" />
@@ -584,77 +669,7 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Singers" EntitySet="Singers" />
           </AssociationSet>
-          <EntitySet Name="MusicsLists" EntityType="MusicProjectDataModel.MusicsList" />
-          <AssociationSet Name="FK_Musics_Users1" Association="MusicProjectDataModel.FK_Musics_Users1">
-            <End Role="User" EntitySet="Users" />
-            <End Role="MusicsList" EntitySet="MusicsLists" />
-          </AssociationSet>
-          <EntitySet Name="Nationals" EntityType="MusicProjectDataModel.National" />
-          <AssociationSet Name="FK_MusicsList_National" Association="MusicProjectDataModel.FK_MusicsList_National">
-            <End Role="National" EntitySet="Nationals" />
-            <End Role="MusicsList" EntitySet="MusicsLists" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="MusicsList">
-          <Key>
-            <PropertyRef Name="music_id" />
-          </Key>
-          <Property Name="music_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="music_name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="music_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="music_lyric" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="music_time" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="music_view" Type="Int32" />
-          <Property Name="music_dowload" Type="Int32" />
-          <Property Name="music_love" Type="Int32" />
-          <Property Name="user_id" Type="Int32" />
-          <Property Name="music_linkdow" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="music_datecreate" Type="DateTime" Precision="0" />
-          <Property Name="music_dateedit" Type="DateTime" Precision="0" />
-          <Property Name="music_active" Type="Boolean" />
-          <Property Name="music_bin" Type="Boolean" />
-          <Property Name="music_option" Type="Boolean" />
-          <NavigationProperty Name="User" Relationship="MusicProjectDataModel.FK_Musics_Users1" FromRole="MusicsList" ToRole="User" />
-          <Property Name="nation_id" Type="Int32" />
-          <NavigationProperty Name="National" Relationship="MusicProjectDataModel.FK_MusicsList_National" FromRole="MusicsList" ToRole="National" />
-        </EntityType>
-        <Association Name="FK_Musics_Users1">
-          <End Type="MusicProjectDataModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="MusicProjectDataModel.MusicsList" Role="MusicsList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="MusicsList">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="National">
-          <Key>
-            <PropertyRef Name="nation_id" />
-          </Key>
-          <Property Name="nation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nation_name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="nation_active" Type="Boolean" />
-          <Property Name="nation_bin" Type="Boolean" />
-          <Property Name="nation_datecreate" Type="DateTime" Precision="3" />
-          <Property Name="nation_dateupdate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="MusicsLists" Relationship="MusicProjectDataModel.FK_MusicsList_National" FromRole="National" ToRole="MusicsList" />
-          <Property Name="nation_option" Type="Boolean" />
-        </EntityType>
-        <Association Name="FK_MusicsList_National">
-          <End Type="MusicProjectDataModel.National" Role="National" Multiplicity="0..1" />
-          <End Type="MusicProjectDataModel.MusicsList" Role="MusicsList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="National">
-              <PropertyRef Name="nation_id" />
-            </Principal>
-            <Dependent Role="MusicsList">
-              <PropertyRef Name="nation_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -687,16 +702,16 @@
                 <ScalarProperty Name="author_bin" ColumnName="author_bin" />
                 <ScalarProperty Name="author_note" ColumnName="author_note" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="author_option" ColumnName="author_option" />
+                <ScalarProperty Name="author_datecreate" ColumnName="author_datecreate" />
+                <ScalarProperty Name="author_dateupdate" ColumnName="author_dateupdate" />
+                <ScalarProperty Name="author_img" ColumnName="author_img" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Category">
               <MappingFragment StoreEntitySet="Categories">
-                <ScalarProperty Name="category_option" ColumnName="category_option" />
-                <ScalarProperty Name="category_img" ColumnName="category_img" />
-                <ScalarProperty Name="category_dateupdate" ColumnName="category_dateupdate" />
-                <ScalarProperty Name="category_datecreate" ColumnName="category_datecreate" />
                 <ScalarProperty Name="category_id" ColumnName="category_id" />
                 <ScalarProperty Name="category_name" ColumnName="category_name" />
                 <ScalarProperty Name="category_active" ColumnName="category_active" />
@@ -704,6 +719,45 @@
                 <ScalarProperty Name="category_note" ColumnName="category_note" />
                 <ScalarProperty Name="category_view" ColumnName="category_view" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="category_datecreate" ColumnName="category_datecreate" />
+                <ScalarProperty Name="category_dateupdate" ColumnName="category_dateupdate" />
+                <ScalarProperty Name="category_img" ColumnName="category_img" />
+                <ScalarProperty Name="category_option" ColumnName="category_option" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MusicsLists">
+            <EntityTypeMapping TypeName="MusicProjectDataModel.MusicsList">
+              <MappingFragment StoreEntitySet="MusicsList">
+                <ScalarProperty Name="music_id" ColumnName="music_id" />
+                <ScalarProperty Name="music_name" ColumnName="music_name" />
+                <ScalarProperty Name="music_img" ColumnName="music_img" />
+                <ScalarProperty Name="music_lyric" ColumnName="music_lyric" />
+                <ScalarProperty Name="music_time" ColumnName="music_time" />
+                <ScalarProperty Name="music_view" ColumnName="music_view" />
+                <ScalarProperty Name="music_dowload" ColumnName="music_dowload" />
+                <ScalarProperty Name="music_love" ColumnName="music_love" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="music_linkdow" ColumnName="music_linkdow" />
+                <ScalarProperty Name="music_datecreate" ColumnName="music_datecreate" />
+                <ScalarProperty Name="music_dateedit" ColumnName="music_dateedit" />
+                <ScalarProperty Name="music_active" ColumnName="music_active" />
+                <ScalarProperty Name="music_bin" ColumnName="music_bin" />
+                <ScalarProperty Name="music_option" ColumnName="music_option" />
+                <ScalarProperty Name="nation_id" ColumnName="nation_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationals">
+            <EntityTypeMapping TypeName="MusicProjectDataModel.National">
+              <MappingFragment StoreEntitySet="National">
+                <ScalarProperty Name="nation_id" ColumnName="nation_id" />
+                <ScalarProperty Name="nation_name" ColumnName="nation_name" />
+                <ScalarProperty Name="nation_active" ColumnName="nation_active" />
+                <ScalarProperty Name="nation_bin" ColumnName="nation_bin" />
+                <ScalarProperty Name="nation_datecreate" ColumnName="nation_datecreate" />
+                <ScalarProperty Name="nation_dateupdate" ColumnName="nation_dateupdate" />
+                <ScalarProperty Name="nation_option" ColumnName="nation_option" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -760,6 +814,9 @@
                 <ScalarProperty Name="singer_note" ColumnName="singer_note" />
                 <ScalarProperty Name="singer_img" ColumnName="singer_img" />
                 <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="singer_option" ColumnName="singer_option" />
+                <ScalarProperty Name="singer_datecreate" ColumnName="singer_datecreate" />
+                <ScalarProperty Name="singer_dateupdate" ColumnName="singer_dateupdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -791,41 +848,6 @@
                 <ScalarProperty Name="user_code" ColumnName="user_code" />
                 <ScalarProperty Name="user_point" ColumnName="user_point" />
                 <ScalarProperty Name="user_deadline" ColumnName="user_deadline" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MusicsLists">
-            <EntityTypeMapping TypeName="MusicProjectDataModel.MusicsList">
-              <MappingFragment StoreEntitySet="MusicsList">
-                <ScalarProperty Name="nation_id" ColumnName="nation_id" />
-                <ScalarProperty Name="music_option" ColumnName="music_option" />
-                <ScalarProperty Name="music_bin" ColumnName="music_bin" />
-                <ScalarProperty Name="music_active" ColumnName="music_active" />
-                <ScalarProperty Name="music_dateedit" ColumnName="music_dateedit" />
-                <ScalarProperty Name="music_datecreate" ColumnName="music_datecreate" />
-                <ScalarProperty Name="music_linkdow" ColumnName="music_linkdow" />
-                <ScalarProperty Name="user_id" ColumnName="user_id" />
-                <ScalarProperty Name="music_love" ColumnName="music_love" />
-                <ScalarProperty Name="music_dowload" ColumnName="music_dowload" />
-                <ScalarProperty Name="music_view" ColumnName="music_view" />
-                <ScalarProperty Name="music_time" ColumnName="music_time" />
-                <ScalarProperty Name="music_lyric" ColumnName="music_lyric" />
-                <ScalarProperty Name="music_img" ColumnName="music_img" />
-                <ScalarProperty Name="music_name" ColumnName="music_name" />
-                <ScalarProperty Name="music_id" ColumnName="music_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Nationals">
-            <EntityTypeMapping TypeName="MusicProjectDataModel.National">
-              <MappingFragment StoreEntitySet="National">
-                <ScalarProperty Name="nation_option" ColumnName="nation_option" />
-                <ScalarProperty Name="nation_dateupdate" ColumnName="nation_dateupdate" />
-                <ScalarProperty Name="nation_datecreate" ColumnName="nation_datecreate" />
-                <ScalarProperty Name="nation_bin" ColumnName="nation_bin" />
-                <ScalarProperty Name="nation_active" ColumnName="nation_active" />
-                <ScalarProperty Name="nation_name" ColumnName="nation_name" />
-                <ScalarProperty Name="nation_id" ColumnName="nation_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

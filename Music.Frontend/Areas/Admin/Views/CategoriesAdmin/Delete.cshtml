@@ -40,11 +40,8 @@
                         </select>
                     </div>
                     <div class="field">
-                        <button class="ui secondary button">
-                            <i class="icon-copy dw dw-trash1"></i> Thùng Rác
-                        </button>
-                        <button data-toggle="modal" data-target="#create-Admin" class="ui button">
-                            <i class="icon-copy dw dw-add"></i> Thêm Danh Mục
+                        <button ng-click="linkDel()" class="ui secondary button">
+                            <i class="icon-copy dw dw-undo1"></i> Trở Lại
                         </button>
                     </div>
                 </div>
@@ -87,11 +84,10 @@
                             <td>{{list.category_datecreate}}</td>
                             <td>{{list.category_dateupdate}}</td>
                             <td>
-                                <div class="font_color">
-                                    <a data-toggle="modal" data-target="#details-Admin{{list.category_id}}"><i class="icon-copy dw dw-eye"></i></a> |
-                                    <a ng-click="bin(list.category_id)"><i class="icon-copy dw dw-trash1"></i></a> |
-                                    <a data-toggle="modal" data-target="#edit-Admin{{list.category_id}}"><i class="icon-copy dw dw-edit2"></i></a>
-                                </div>
+                                <center class="font_color">
+                                    <a ng-click="delete(list.category_id)"><i class="icon-copy dw dw-trash1"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <a ng-click="restore(list.category_id)"><i class="icon-copy dw dw-recycle-1"></i></a>
+                                </center>
                             </td>
                         </tr>
                     </tbody>
@@ -209,6 +205,36 @@
             </div>
         </div>
         <!--End Modal-->
+        <!--Modal khôi phục-->
+        <div class="modal fade" id="note-Res" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center font-18">
+                        <h3 class="mb-20">Đã Khôi Phục!</h3>
+                        <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
+        <!--Modal xoá-->
+        <div class="modal fade" id="note-Delete" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center font-18">
+                        <h3 class="mb-20">Đã Xoá Vĩnh Viễn!</h3>
+                        <div class="mb-30 text-center"><img src="~/Content/LayoutAdmin/vendors/images/success.png"></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Modal-->
     </div>
 </div>
 <!-- Checkbox select Datatable End -->
@@ -257,7 +283,7 @@
     app.controller('myCtrl', function ($scope, $http) {
         $http({
             method: "GET",
-            url: "/JsonAdmin/Categorys?del="
+            url: "/JsonAdmin/Categorys?del=del"
         }).then(function mySuccess(response) {
             $scope.list = response.data;
 
@@ -275,11 +301,30 @@
                     });
             };
 
-            $scope.bin = function (id) {
-                $http.get("/Admin/CategoriesAdmin/Del?id=" + id)
+            $scope.restore = function (id) {
+                $http.get("/Admin/CategoriesAdmin/Restore?id=" + id)
                     .then(function (response) {
                         $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#note-Res').modal('show');
+                        })
                     });
+            };
+
+            $scope.delete = function (id) {
+                $http.get("/Admin/CategoriesAdmin/DeleteCate?id=" + id)
+                    .then(function (response) {
+                        $scope.list = response.data;
+
+                        $(document).ready(function () {
+                            $('#note-Delete').modal('show');
+                        })
+                    });
+            };
+
+            $scope.linkDel = function () {
+                window.location.href = '/Admin/CategoriesAdmin/Index';
             };
 
 

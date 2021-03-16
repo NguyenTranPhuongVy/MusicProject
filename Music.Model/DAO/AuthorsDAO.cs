@@ -8,7 +8,7 @@ using Music.Model.EF;
 
 namespace Music.Model.DAO
 {
-    class AuthorsDAO
+    public class AuthorsDAO
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
         //Hàm thêm
@@ -16,6 +16,9 @@ namespace Music.Model.DAO
         {
             try
             {
+                author.author_datecreate = DateTime.Now;
+                author.author_dateupdate = DateTime.Now;
+
                 db.Authors.Add(author);
                 db.SaveChanges();
 
@@ -48,6 +51,74 @@ namespace Music.Model.DAO
             {
                Author author = db.Authors.Find(id);
                 db.Authors.Remove(author);
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Active
+        public bool Active(int? id)
+        {
+            try
+            {
+                Author author = db.Authors.Find(id);
+                author.author_active = !author.author_active;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        //Option
+        public bool Option(int? id)
+        {
+            try
+            {
+                Author author = db.Authors.Find(id);
+                author.author_option = !author.author_option;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Thùng rác
+        public bool Del(int? id)
+        {
+            try
+            {
+                Author author = db.Authors.Find(id);
+                author.author_bin = true;
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Khôi Phục
+        public bool Restore(int? id)
+        {
+            try
+            {
+                Author author = db.Authors.Find(id);
+                author.author_bin = false;
+
                 db.SaveChanges();
 
                 return true;

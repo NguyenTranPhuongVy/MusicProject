@@ -23,7 +23,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
 
         public ActionResult Delete()
         {
-            return View();
+            return View(db.Categories.Where(n => n.category_bin == true).ToList());
         }
 
         [HttpGet]
@@ -123,7 +123,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             }
             else
             {
-                return Redirect("/Admin/CategoriesAdmin");
+                return Redirect(Common.Link.NOT_404);
             }
         }
 
@@ -163,7 +163,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             }
             else
             {
-                return Redirect("/Admin/CategoriesAdmin1");
+                return Redirect("Common.Link.NOT_404");
             }
         }
 
@@ -174,7 +174,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             var dao = new CategoriesDAO();
             if (dao.Del(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,
@@ -203,9 +203,40 @@ namespace Music.Frontend.Areas.Admin.Controllers
         public JsonResult Restore(int? id)
         {
             var dao = new CategoriesDAO();
-            if (dao.Del(id))
+            if (dao.Restore(id))
             {
-                List<Category> categories = db.Categories.Where(n => n.category_bin == false).OrderBy(n => n.category_name).ToList();
+                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
+                List<jCategories> list = categories.Select(n => new jCategories
+                {
+                    category_active = n.category_active,
+                    category_bin = n.category_bin,
+                    category_id = n.category_id,
+                    category_name = n.category_name,
+                    category_note = n.category_note,
+                    category_view = n.category_view,
+                    user_id = n.user_id,
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_img = n.category_img,
+                    category_option = n.category_option
+
+                }).ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(null);
+            }
+        }
+
+        //Hàm xoá
+        public JsonResult DeleteCate(int? id)
+        {
+            var dao = new CategoriesDAO();
+            var j = new JsonAdminController();
+            if (dao.Delete(id))
+            {
+                List<Category> categories = db.Categories.Where(n => n.category_bin == true).OrderBy(n => n.category_name).ToList();
                 List<jCategories> list = categories.Select(n => new jCategories
                 {
                     category_active = n.category_active,

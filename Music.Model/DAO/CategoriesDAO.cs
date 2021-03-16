@@ -38,6 +38,7 @@ namespace Music.Model.DAO
             {
                 Category category = db.Categories.Find(id);
                 db.Categories.Remove(category);
+
                 db.SaveChanges();
 
                 return true;
@@ -101,6 +102,7 @@ namespace Music.Model.DAO
             {
                 Category category = db.Categories.Find(id);
                 category.category_bin = true;
+
                 db.SaveChanges();
 
                 return true;
@@ -118,6 +120,7 @@ namespace Music.Model.DAO
             {
                 Category category = db.Categories.Find(id);
                 category.category_bin = false;
+
                 db.SaveChanges();
 
                 return true;

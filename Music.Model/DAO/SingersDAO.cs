@@ -16,6 +16,9 @@ namespace Music.Model.DAO
         {
             try
             {
+                singer.singer_datecreate = DateTime.Now;
+                singer.singer_dateupdate = DateTime.Now;
+
                 db.Singers.Add(singer);
                 db.SaveChanges();
 
@@ -26,6 +29,24 @@ namespace Music.Model.DAO
                 return false;
             }
         }
+        //Hàm xoá
+        public bool Delete(int? id)
+        {
+            try
+            {
+                Singer singer = db.Singers.Find(id);
+                db.Singers.Remove(singer);
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         //Hàm sửa
         public bool Edit(Singer singer)
         {
@@ -41,13 +62,66 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Hàm xoá
-        public bool Delete(int? id)
+
+        //Active
+        public bool Active(int? id)
         {
             try
             {
                 Singer singer = db.Singers.Find(id);
-                db.Singers.Remove(singer);
+                singer.singer_active = !singer.singer_active;
+
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        //Option
+        public bool Option(int? id)
+        {
+            try
+            {
+                Singer singer = db.Singers.Find(id);
+                singer.singer_option = !singer.singer_option;
+
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Thùng rác
+        public bool Del(int? id)
+        {
+            try
+            {
+                Singer singer = db.Singers.Find(id);
+                singer.singer_bin = true;
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Khôi Phục
+        public bool Restore(int? id)
+        {
+            try
+            {
+                Singer singer = db.Singers.Find(id);
+                singer.singer_bin = false;
+
                 db.SaveChanges();
 
                 return true;

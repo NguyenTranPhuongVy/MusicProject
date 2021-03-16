@@ -147,7 +147,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\jAuthors.cs" />
     <Compile Include="Models\jCategories.cs" />
+    <Compile Include="Models\jSingers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -654,6 +656,7 @@
     <Content Include="Content\LayoutAdmin\vendors\styles\style.min.css" />
     <Content Include="Content\Layout\css\bootstrap.min.css" />
     <Content Include="Content\Layout\css\elegant-icons.css" />
+    <Content Include="Content\Layout\css\error.css" />
     <Content Include="Content\Layout\css\flaticon.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
     <Content Include="Content\Layout\css\magnific-popup.css" />
@@ -1029,6 +1032,10 @@
     <Content Include="Scripts\angular-route.min.js.map" />
     <Content Include="Areas\Admin\Views\ViewAdmin\Validation.cshtml" />
     <Content Include="Areas\Admin\Views\CategoriesAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\SingersAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SingersAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AuthorsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AuthorsAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1054,26 +1061,26 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\View\ErrorLay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\AlbumsAdmin\" />
-    <Folder Include="Areas\Admin\Views\AuthorsAdmin\" />
     <Folder Include="Areas\Admin\Views\FunctionAdmin\" />
     <Folder Include="Areas\Admin\Views\JsonAdmin\" />
     <Folder Include="Areas\Admin\Views\MusicsListAdmin\" />
     <Folder Include="Areas\Admin\Views\PackagesAdmin\" />
     <Folder Include="Areas\Admin\Views\PaysAdmin\" />
-    <Folder Include="Areas\Admin\Views\SingersAdmin\" />
     <Folder Include="Areas\Admin\Views\UsersAdmin\" />
     <Folder Include="Images\Album\" />
+    <Folder Include="Images\Author\" />
     <Folder Include="Images\Music\" />
+    <Folder Include="Images\Singer\" />
     <Folder Include="Images\User\" />
     <Folder Include="Views\Function\" />
     <Folder Include="Views\Images\" />
     <Folder Include="Views\Json\" />
-    <Folder Include="Views\View\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

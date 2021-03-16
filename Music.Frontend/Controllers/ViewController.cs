@@ -13,5 +13,10 @@ namespace Music.Frontend.Controllers
         {
             return View();
         }
+
+        public PartialViewResult ErrorLay()
+        {
+            return PartialView();
+        }
     }
 }
