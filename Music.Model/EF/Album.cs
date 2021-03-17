@@ -25,6 +25,7 @@ namespace Music.Model.EF
         public string album_note { get; set; }
         public string album_img { get; set; }
         public Nullable<int> user_id { get; set; }
+        public Nullable<bool> album_option { get; set; }
     
         public virtual User User { get; set; }
     }

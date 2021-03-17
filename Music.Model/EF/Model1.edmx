@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MusicProjectDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MusicProjectDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Albums">
           <Key>
             <PropertyRef Name="album_id" />
@@ -20,6 +20,7 @@
           <Property Name="album_note" Type="nvarchar(max)" />
           <Property Name="album_img" Type="nvarchar(max)" />
           <Property Name="user_id" Type="int" />
+          <Property Name="album_option" Type="bit" />
         </EntityType>
         <EntityType Name="Authors">
           <Key>
@@ -326,8 +327,7 @@
             <End Role="Singers" EntitySet="Singers" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MusicProjectDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -347,6 +347,7 @@
           <Property Name="album_img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="user_id" Type="Int32" />
           <NavigationProperty Name="User" Relationship="Self.FK_Albums_Users" FromRole="Albums" ToRole="Users" />
+          <Property Name="album_option" Type="Boolean" />
         </EntityType>
         <EntityType Name="Author">
           <Key>
@@ -679,6 +680,7 @@
           <EntitySetMapping Name="Albums">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Album">
               <MappingFragment StoreEntitySet="Albums">
+                <ScalarProperty Name="album_option" ColumnName="album_option" />
                 <ScalarProperty Name="album_id" ColumnName="album_id" />
                 <ScalarProperty Name="album_name" ColumnName="album_name" />
                 <ScalarProperty Name="album_datecreate" ColumnName="album_datecreate" />

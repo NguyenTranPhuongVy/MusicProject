@@ -40,8 +40,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     user_id = n.user_id,
-                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
+                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
                     author_option = n.author_option
 
@@ -68,8 +68,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     user_id = n.user_id,
-                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
+                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
                     author_option = n.author_option
 
@@ -159,7 +159,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             }
             else
             {
-                return Redirect("Common.Link.NOT_404");
+                return Redirect(Common.Link.NOT_404);
             }
         }
 
@@ -179,8 +179,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     user_id = n.user_id,
-                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
+                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
                     author_option = n.author_option
 
@@ -209,8 +209,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     user_id = n.user_id,
-                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
+                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
                     author_option = n.author_option
 
@@ -224,7 +224,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
         }
 
         //Hàm xoá
-        public JsonResult DeleteCate(int? id)
+        public JsonResult DeleteAuthor(int? id)
         {
             var dao = new AuthorsDAO();
             var j = new JsonAdminController();
@@ -239,8 +239,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     author_name = n.author_name,
                     author_note = n.author_note,
                     user_id = n.user_id,
-                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    author_datecreate = n.author_datecreate.Value.ToString("dd/MM/yyyy"),
+                    author_dateupdate = n.author_dateupdate.Value.ToString("dd/MM/yyyy"),
                     author_img = n.author_img,
                     author_option = n.author_option
 

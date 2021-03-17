@@ -42,8 +42,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
                     category_option = n.category_option
 
@@ -71,8 +71,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
                     category_option = n.category_option
 
@@ -163,7 +163,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             }
             else
             {
-                return Redirect("Common.Link.NOT_404");
+                return Redirect(Common.Link.NOT_404);
             }
         }
 
@@ -184,8 +184,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
                     category_option = n.category_option
 
@@ -215,8 +215,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
                     category_option = n.category_option
 
@@ -246,8 +246,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     category_note = n.category_note,
                     category_view = n.category_view,
                     user_id = n.user_id,
-                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    category_datecreate = n.category_datecreate.Value.ToString("dd/MM/yyyy"),
+                    category_dateupdate = n.category_dateupdate.Value.ToString("dd/MM/yyyy"),
                     category_img = n.category_img,
                     category_option = n.category_option
 

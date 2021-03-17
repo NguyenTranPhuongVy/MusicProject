@@ -21,5 +21,13 @@ namespace Music.Frontend.Function
             IMG.SaveAs(pa);
             return fileimg;
         }
+
+        public string AddMP3(HttpPostedFileBase MP3, string LinkMP3, string code)
+        {
+            var filemp3 = Path.GetFileName(MP3.FileName);
+            var pa = Path.Combine(System.Web.HttpContext.Current.Server.MapPath("~/LinkMP3/" + LinkMP3), code + filemp3);
+            MP3.SaveAs(pa);
+            return filemp3;
+        }
     }
 }

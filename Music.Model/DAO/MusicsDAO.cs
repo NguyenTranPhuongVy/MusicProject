@@ -8,7 +8,7 @@ using Music.Model.EF;
 
 namespace Music.Model.DAO
 {
-    class MusicsDAO
+    public class MusicsDAO
     {
         private MusicProjectDataEntities db = new MusicProjectDataEntities();
         //Hàm thêm
@@ -16,6 +16,11 @@ namespace Music.Model.DAO
         {
             try
             {
+                musics.music_datecreate = DateTime.Now;
+                musics.music_dateedit = DateTime.Now;
+                musics.music_love = 1;
+                musics.music_view = 1;
+
                 db.MusicsLists.Add(musics);
                 db.SaveChanges();
 
@@ -48,6 +53,73 @@ namespace Music.Model.DAO
             {
                 MusicsList musics = db.MusicsLists.Find(id);
                 db.MusicsLists.Remove(musics);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Active
+        public bool Active(int? id)
+        {
+            try
+            {
+                MusicsList musics = db.MusicsLists.Find(id);
+                musics.music_active = !musics.music_active;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        //Option
+        public bool Option(int? id)
+        {
+            try
+            {
+                MusicsList musics = db.MusicsLists.Find(id);
+                musics.music_option = !musics.music_option;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Thùng rác
+        public bool Del(int? id)
+        {
+            try
+            {
+                MusicsList musics = db.MusicsLists.Find(id);
+                musics.music_bin = true;
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Khôi Phục
+        public bool Restore(int? id)
+        {
+            try
+            {
+                MusicsList musics = db.MusicsLists.Find(id);
+                musics.music_bin = false;
+
                 db.SaveChanges();
 
                 return true;

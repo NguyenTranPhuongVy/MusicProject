@@ -16,6 +16,9 @@ namespace Music.Model.DAO
         {
             try
             {
+                national.nation_datecreate = DateTime.Now;
+                national.nation_dateupdate = DateTime.Now;
+
                 db.Nationals.Add(national);
                 db.SaveChanges();
 
@@ -57,14 +60,15 @@ namespace Music.Model.DAO
                 return false;
             }
         }
+
         //Active
         public bool Active(int? id)
         {
             try
             {
                 National national = db.Nationals.Find(id);
-                national.nation_active =! national.nation_active;
-
+                national.nation_active = !national.nation_active;
+                db.SaveChanges();
                 return true;
             }
             catch (Exception)
@@ -79,6 +83,24 @@ namespace Music.Model.DAO
             {
                 National national = db.Nationals.Find(id);
                 national.nation_option = !national.nation_option;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Thùng rác
+        public bool Del(int? id)
+        {
+            try
+            {
+                National national = db.Nationals.Find(id);
+                national.nation_bin = true;
+
+                db.SaveChanges();
 
                 return true;
             }
@@ -87,13 +109,16 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Del
-        public bool Del(int? id)
+
+        //Khôi Phục
+        public bool Restore(int? id)
         {
             try
             {
                 National national = db.Nationals.Find(id);
-                national.nation_bin = true;
+                national.nation_bin = false;
+
+                db.SaveChanges();
 
                 return true;
             }

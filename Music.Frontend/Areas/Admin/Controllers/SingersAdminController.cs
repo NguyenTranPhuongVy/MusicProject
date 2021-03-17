@@ -41,8 +41,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
                     user_id = n.user_id,
-                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
+                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -68,8 +68,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
                     user_id = n.user_id,
-                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
+                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -179,8 +179,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
                     user_id = n.user_id,
-                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
+                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -208,8 +208,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
                     user_id = n.user_id,
-                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
+                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);
@@ -237,8 +237,8 @@ namespace Music.Frontend.Areas.Admin.Controllers
                     singer_name = n.singer_name,
                     singer_note = n.singer_note,
                     user_id = n.user_id,
-                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
-                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy hh:mm:ss"),
+                    singer_datecreate = n.singer_datecreate.Value.ToString("dd/MM/yyyy"),
+                    singer_dateupdate = n.singer_dateupdate.Value.ToString("dd/MM/yyyy"),
                     singer_option = n.singer_option,
                 }).ToList();
                 return Json(list, JsonRequestBehavior.AllowGet);

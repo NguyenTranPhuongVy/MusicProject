@@ -16,6 +16,11 @@ namespace Music.Model.DAO
         {
             try
             {
+                album.album_datecreate = DateTime.Now;
+                album.album_dateedit = DateTime.Now;
+                album.album_view = 1;
+                album.album_love = 1;
+
                 db.Albums.Add(album);
                 db.SaveChanges();
 
@@ -57,13 +62,45 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Active
-        public bool Active(int ? id)
+        public bool Active(int? id)
         {
             try
             {
                 Album album = db.Albums.Find(id);
-                album.album_active =! album.album_active;
+                album.album_active = !album.album_active;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        //Option
+        public bool Option(int? id)
+        {
+            try
+            {
+                Album album = db.Albums.Find(id);
+                album.album_option = !album.album_option;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Thùng rác
+        public bool Del(int? id)
+        {
+            try
+            {
+                Album album = db.Albums.Find(id);
+                album.album_bin = true;
+
+                db.SaveChanges();
 
                 return true;
             }
@@ -72,13 +109,16 @@ namespace Music.Model.DAO
                 return false;
             }
         }
-        //Del
-        public bool Del(int ? id)
+
+        //Khôi Phục
+        public bool Restore(int? id)
         {
             try
             {
                 Album album = db.Albums.Find(id);
-                album.album_bin = true;
+                album.album_bin = false;
+
+                db.SaveChanges();
 
                 return true;
             }

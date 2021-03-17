@@ -134,6 +134,7 @@
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\JsonAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\MusicsListAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NationsAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PackagesAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\PaysAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\SingersAdminController.cs" />
@@ -147,9 +148,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\jAlbums.cs" />
     <Compile Include="Models\jAuthors.cs" />
     <Compile Include="Models\jCategories.cs" />
+    <Compile Include="Models\jMusics.cs" />
+    <Compile Include="Models\jPackages.cs" />
+    <Compile Include="Models\jPays.cs" />
     <Compile Include="Models\jSingers.cs" />
+    <Compile Include="Models\jUsers.cs" />
+    <Compile Include="Models\jNations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1036,6 +1043,14 @@
     <Content Include="Areas\Admin\Views\SingersAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\AuthorsAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AuthorsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\UsersAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AlbumsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AlbumsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\NationsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NationsAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\MusicsListAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\MusicsListAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1066,18 +1081,17 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\AlbumsAdmin\" />
     <Folder Include="Areas\Admin\Views\FunctionAdmin\" />
     <Folder Include="Areas\Admin\Views\JsonAdmin\" />
-    <Folder Include="Areas\Admin\Views\MusicsListAdmin\" />
+    <Folder Include="Areas\Admin\Views\Nations\" />
     <Folder Include="Areas\Admin\Views\PackagesAdmin\" />
     <Folder Include="Areas\Admin\Views\PaysAdmin\" />
-    <Folder Include="Areas\Admin\Views\UsersAdmin\" />
     <Folder Include="Images\Album\" />
     <Folder Include="Images\Author\" />
     <Folder Include="Images\Music\" />
     <Folder Include="Images\Singer\" />
     <Folder Include="Images\User\" />
+    <Folder Include="LinkMP3\Music\" />
     <Folder Include="Views\Function\" />
     <Folder Include="Views\Images\" />
     <Folder Include="Views\Json\" />
