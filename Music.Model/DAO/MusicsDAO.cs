@@ -20,6 +20,7 @@ namespace Music.Model.DAO
                 musics.music_dateedit = DateTime.Now;
                 musics.music_love = 1;
                 musics.music_view = 1;
+                musics.music_dowload = 0;
 
                 db.MusicsLists.Add(musics);
                 db.SaveChanges();

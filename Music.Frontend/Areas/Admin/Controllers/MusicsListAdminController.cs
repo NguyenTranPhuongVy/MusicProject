@@ -114,7 +114,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             {
                 var code = Guid.NewGuid().ToString();
                 var img = new ImagesController();
-                img.AddImages(IMG, Common.Link.IMG_CATEGORY, code);
+                img.AddImages(IMG, Common.Link.IMG_MUSIC, code);
                 musics.music_img = code + IMG.FileName;
             }
             else
@@ -152,7 +152,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
         //Hàm sửa
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(MusicsList musics, HttpPostedFileBase IMG)
+        public ActionResult Edit(MusicsList musics, HttpPostedFileBase IMG, HttpPostedFileBase MP3)
         {
             MusicsList mus = db.MusicsLists.Find(musics.music_id);
 
@@ -164,6 +164,7 @@ namespace Music.Frontend.Areas.Admin.Controllers
             musics.music_view = mus.music_view;
             musics.music_love = mus.music_love;
             musics.user_id = mus.user_id;
+            musics.music_dowload = mus.music_dowload;
 
             var i = new ImagesController();
             if (IMG != null)
@@ -177,6 +178,20 @@ namespace Music.Frontend.Areas.Admin.Controllers
             {
                 musics.music_img = mus.music_img;
             }
+
+            //Nhạc
+            if (MP3 != null)
+            {
+                var code = Guid.NewGuid().ToString();
+                var mp3 = new ImagesController();
+                mp3.AddMP3(MP3, Common.Link.MP3_MUSIC, code);
+                musics.music_linkdow = code + MP3.FileName;
+            }
+            else
+            {
+                musics.music_linkdow = mus.music_linkdow;
+            }
+
 
 
             var dao = new MusicsDAO();
