@@ -315,5 +315,43 @@ namespace Music.Frontend.Areas.Admin.Controllers
                 return Json(list, JsonRequestBehavior.AllowGet);
             }    
         }
+
+        public JsonResult Packages(string del)
+        {
+            if(del != "del")
+            {
+                List<Package> packages = db.Packages.Where(n => n.package_pin == false).OrderBy(n => n.package_name).ToList();
+                List<jPackages> list = packages.Select(n => new jPackages
+                {
+                    package_active = n.package_active,
+                    package_name = n.package_name,
+                    package_content = n.package_content,
+                    package_datecreate = n.package_datecreate.Value.ToString("dd/MM/yyyy"),
+                    package_id = n.package_id,
+                    package_money = n.package_money,
+                    package_option = n.package_option,
+                    package_pin = n.package_pin,
+                    pakage_price = n.pakage_price
+                }).ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }    
+            else
+            {
+                List<Package> packages = db.Packages.Where(n => n.package_pin == true).OrderBy(n => n.package_name).ToList();
+                List<jPackages> list = packages.Select(n => new jPackages
+                {
+                    package_active = n.package_active,
+                    package_name = n.package_name,
+                    package_content = n.package_content,
+                    package_datecreate = n.package_datecreate.Value.ToString("dd/MM/yyyy"),
+                    package_id = n.package_id,
+                    package_money = n.package_money,
+                    package_option = n.package_option,
+                    package_pin = n.package_pin,
+                    pakage_price = n.pakage_price
+                }).ToList();
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }    
+        }
     }
 }

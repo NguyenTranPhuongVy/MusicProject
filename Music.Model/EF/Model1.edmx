@@ -99,6 +99,7 @@
           <Property Name="package_pin" Type="bit" />
           <Property Name="pakage_price" Type="int" />
           <Property Name="pakege_deadline" Type="datetime" />
+          <Property Name="package_option" Type="bit" />
         </EntityType>
         <EntityType Name="Pays">
           <Key>
@@ -432,6 +433,7 @@
           <Property Name="pakage_price" Type="Int32" />
           <Property Name="pakege_deadline" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Pays" Relationship="Self.FK_Pays_Packages" FromRole="Packages" ToRole="Pays" />
+          <Property Name="package_option" Type="Boolean" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
@@ -766,6 +768,7 @@
           <EntitySetMapping Name="Packages">
             <EntityTypeMapping TypeName="MusicProjectDataModel.Package">
               <MappingFragment StoreEntitySet="Packages">
+                <ScalarProperty Name="package_option" ColumnName="package_option" />
                 <ScalarProperty Name="package_id" ColumnName="package_id" />
                 <ScalarProperty Name="package_name" ColumnName="package_name" />
                 <ScalarProperty Name="package_money" ColumnName="package_money" />

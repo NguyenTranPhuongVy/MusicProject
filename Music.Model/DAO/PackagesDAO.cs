@@ -16,6 +16,8 @@ namespace Music.Model.DAO
         {
             try
             {
+                package.package_datecreate = DateTime.Now;
+
                 db.Packages.Add(package);
                 db.SaveChanges();
 
@@ -48,6 +50,72 @@ namespace Music.Model.DAO
             {
                 Package package = db.Packages.Find(id);
                 db.Packages.Remove(package);
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool Active(int? id)
+        {
+            try
+            {
+                Package package = db.Packages.Find(id);
+                package.package_active = !package.package_active;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        //Option
+        public bool Option(int? id)
+        {
+            try
+            {
+                Package package = db.Packages.Find(id);
+                package.package_option = !package.package_option;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Thùng rác
+        public bool Del(int? id)
+        {
+            try
+            {
+                Package package = db.Packages.Find(id);
+                package.package_pin = true;
+
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        //Khôi Phục
+        public bool Restore(int? id)
+        {
+            try
+            {
+                Package package = db.Packages.Find(id);
+                package.package_pin = false;
+
                 db.SaveChanges();
 
                 return true;

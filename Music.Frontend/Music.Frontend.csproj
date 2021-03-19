@@ -1051,6 +1051,8 @@
     <Content Include="Areas\Admin\Views\NationsAdmin\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\MusicsListAdmin\Index.cshtml" />
     <Content Include="Areas\Admin\Views\MusicsListAdmin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PackagesAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PackagesAdmin\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1084,7 +1086,6 @@
     <Folder Include="Areas\Admin\Views\FunctionAdmin\" />
     <Folder Include="Areas\Admin\Views\JsonAdmin\" />
     <Folder Include="Areas\Admin\Views\Nations\" />
-    <Folder Include="Areas\Admin\Views\PackagesAdmin\" />
     <Folder Include="Areas\Admin\Views\PaysAdmin\" />
     <Folder Include="Images\Album\" />
     <Folder Include="Images\Author\" />
