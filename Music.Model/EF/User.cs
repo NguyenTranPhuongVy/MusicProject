@@ -24,6 +24,9 @@ namespace Music.Model.EF
             this.Pays = new HashSet<Pay>();
             this.Profiles = new HashSet<Profile>();
             this.Singers = new HashSet<Singer>();
+            this.Comments = new HashSet<Comment>();
+            this.Loves = new HashSet<Love>();
+            this.Videos = new HashSet<Video>();
         }
     
         public int user_id { get; set; }
@@ -55,5 +58,11 @@ namespace Music.Model.EF
         public virtual ICollection<Profile> Profiles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Singer> Singers { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Love> Loves { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

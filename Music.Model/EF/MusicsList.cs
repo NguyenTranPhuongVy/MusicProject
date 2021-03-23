@@ -14,6 +14,14 @@ namespace Music.Model.EF
     
     public partial class MusicsList
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MusicsList()
+        {
+            this.Comments = new HashSet<Comment>();
+            this.Loves = new HashSet<Love>();
+            this.Videos = new HashSet<Video>();
+        }
+    
         public int music_id { get; set; }
         public string music_name { get; set; }
         public string music_img { get; set; }
@@ -33,5 +41,11 @@ namespace Music.Model.EF
     
         public virtual User User { get; set; }
         public virtual National National { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Love> Loves { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Video> Videos { get; set; }
     }
 }

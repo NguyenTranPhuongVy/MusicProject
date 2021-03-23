@@ -25,6 +25,17 @@
         <AssociationConnector Association="MusicProjectDataModel.FK_Pays_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Profiles_Users" ManuallyRouted="false" />
         <AssociationConnector Association="MusicProjectDataModel.FK_Singers_Users" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Comment" Width="1.5" PointX="11.25" PointY="14.625" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Love" Width="1.5" PointX="8.25" PointY="10.875" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Reply" Width="1.5" PointX="13.5" PointY="15" />
+        <EntityTypeShape EntityType="MusicProjectDataModel.Video" Width="1.5" PointX="8.25" PointY="14.5" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Comment_MusicsList" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Comment_Users" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Reply_Comment" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Love_MusicsList" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Love_Users" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Videos_MusicsList" />
+        <AssociationConnector Association="MusicProjectDataModel.FK_Videos_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

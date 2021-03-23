@@ -36,5 +36,9 @@ namespace Music.Model.EF
         public virtual DbSet<Singer> Singers { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Love> Loves { get; set; }
+        public virtual DbSet<Reply> Replies { get; set; }
+        public virtual DbSet<Video> Videos { get; set; }
     }
 }
