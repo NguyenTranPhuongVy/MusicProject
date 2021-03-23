@@ -64,10 +64,10 @@
                         <tr ng-repeat="list in list | filter: textSearch">
                             <td>{{list.package_name}}</td>
                             <td>
-                                {{list.pakage_price}}
+                                {{list.pakage_price | currency:"":"0"}} VNĐ
                             </td>
                             <td>
-                                {{list.package_money}}
+                                {{list.package_money | currency:"":"0"}} VNĐ
                             </td>
                             <td>
                                 <div ng-show="list.package_active == true">

@@ -18,5 +18,10 @@ namespace Music.Frontend.Controllers
         {
             return PartialView();
         }
+
+        public PartialViewResult Validation()
+        {
+            return PartialView();
+        }
     }
 }

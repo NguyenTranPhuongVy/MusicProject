@@ -144,7 +144,7 @@
                                 <div class="two fields">
                                     <div class="field">
                                         <label>Ngày VIP</label>
-                                        <input  name="user_deadline" value="{{list.user_deadline}}" type="text" />
+                                        <input  name="user_deadline" value="{{list.user_deadline | date: 'dd/MM/yyyy'}}" type="text" />
                                     </div>
                                     <div class="field">
                                         <label>Điểm Cá Nhân</label>
