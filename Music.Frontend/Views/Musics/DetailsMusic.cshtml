@@ -3,12 +3,20 @@
     ViewBag.Title = "DetailsMusic";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
 
+    a{
+        color: black;
+    }
+
+    .colorlove a:hover{
+        color: red;
+    }
+</style>
 <section class="portfolio spad">
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-lg-8">
-                <!--M thiết kế chỗ này giùm t với không biết làm sao cho đẹp hết-->
                 <form class="ui form">
                     <div class="row">
                         <div class="col-lg-4">
@@ -17,16 +25,57 @@
                             </div>
                         </div>
                         <div class="col-lg-8">
-                            <!--Thanh Cuộn Lời Bài Hát-->
+                            <style>
+                                #scrolls{
+                                    overflow-y: auto;
+                                    height: 150px;
+                                    color: white;
+                                }
+                            </style>
+                            <div id="scrolls">
+                                <p style="margin-right: 20%">
+                                    Chớ đến lúc mất đi mới thấy lo
+                                </p>
+                                <p style="margin-right: 20%">
+                                    Chớ đến lúc mất đi mới thấy lo
+                                </p>
+                                <p style="margin-right: 20%">
+                                    Chớ đến lúc mất đi mới thấy lo
+                                </p>
+                                <p style="margin-right: 20%">
+                                    Chớ đến lúc mất đi mới thấy lo
+                                </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="mt-2">
-                        <audio controls style="width: 100%; height: 40px !important">
-                            <source src="~/LinkMP3/Music/3b2afa10-fde6-4a26-8e56-090e62534c11Anh-Luon-La-Ly-Do-ERIK.mp3" type="audio/mpeg">
-                        </audio>
+                    <div class="mt-2 mb-2" style="background-color: white; width: 100%; height: auto; border-radius: 5px">
+                        <div class="row">
+                            <div class="col-lg-8 mt-2 mb-2">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="ml-3">
+                                            <h3 class="text-black-50">Anh Luôn Là Lý Do</h3>
+                                            <p class="para text-black-50" style="margin-top: -3%">Noo Phước Thịnh</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 colorlove" style="padding: 2% 2%">
+                                        <a href="#" class="ui secondary">
+                                            <i class="far fa-heart"></i>
+                                        </a>
+                                        <div class="ui ml-2">
+                                            Cancel
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 mt-2 mb-2">
+                                <audio controls style="width: 100%; height: 40px !important">
+                                    <source src="~/LinkMP3/Music/3b2afa10-fde6-4a26-8e56-090e62534c11Anh-Luon-La-Ly-Do-ERIK.mp3" type="audio/mpeg">
+                                </audio>
+                            </div>
+                        </div>
                     </div>
                 </form>
-                <!---->
                 <div class="ui accordion styled" style="width: 100%">
                     <div class="title  active">
                         <i class="dropdown icon"></i>
@@ -129,6 +178,20 @@
                         Báo Cáo Vi Phạm
                     </div>
                     <div class="content">
+                        <div class="field">
+                            <label>Skills</label>
+                            <select name="skills" multiple="" class="ui dropdown">
+                                <option value="">Select Skills</option>
+                                <option value="css">CSS</option>
+                                <option value="html">HTML</option>
+                                <option value="javascript">Javascript</option>
+                                <option value="design">Graphic Design</option>
+                                <option value="plumbing">Plumbing</option>
+                                <option value="mech">Mechanical Engineering</option>
+                                <option value="repair">Kitchen Repair</option>
+                            </select>
+                        </div>
+                        <div class="ui primary submit button">Submit</div>
                     </div>
                 </div>
             </div>
